@@ -1,0 +1,9 @@
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/mazeGenerator.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/edit_cache.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/rebuild_cache.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/list_install_components.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/install.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/install/local.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/install/strip.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/mazeGenerator_autogen_timestamp_deps.dir
+C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/mazeGenerator_autogen.dir
