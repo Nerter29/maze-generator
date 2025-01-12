@@ -46,12 +46,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape) {
         qApp->quit();
     }
+    if (event->key() == Qt::Key_Return) {
+        manualReset();
+    }
     else {
         QMainWindow::keyPressEvent(event);
     }
 }
 
-//this function automatically is called right after the screen has been set in fullscreen
+//this function is automatically called right after the screen has been set in fullscreen so it's the begining of the script
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QMainWindow::resizeEvent(event);
@@ -76,6 +79,9 @@ void MainWindow::setUIDimensions(){
     QLineEdit *delayLineEdit = findChild<QLineEdit*>("delayLineEdit");
     QLabel *delayLabel = findChild<QLabel*>("delayLabel");
 
+    QLabel *leaveLabel = findChild<QLabel*>("leaveLabel");
+
+
     mazeGraphicView->setFixedSize(graphicViewWidth, graphicViewHeight);
     mazeGraphicView->move(0, topHeight - 30);
 
@@ -86,12 +92,10 @@ void MainWindow::setUIDimensions(){
     delayLabel->move(120, 26);
     delayLineEdit->move(328, 25);
 
+    leaveLabel->move(windowSize.width() - 135, 0);
+
     ui->mazeRowsLineEdit->setText(QString("%1").arg(mazeRows));
     ui->delayLineEdit->setText(QString("%1").arg(delay));
-
-
-
-
 }
 
 void MainWindow::resetVariables(){
@@ -103,11 +107,9 @@ void MainWindow::resetVariables(){
     resetStep = 1;
 }
 
-
-
-
 void MainWindow::setSizes(){
-    delay = ui->delayLineEdit->text().toInt();
+    //everything that need to be changed when we change the dimensions of the maze
+    delay = std::max(ui->delayLineEdit->text().toInt(), 1);
     mazeRows = std::min(ui->mazeRowsLineEdit->text().toInt(),150);
 
     ui->mazeRowsLineEdit->setText(QString("%1").arg(mazeRows));
@@ -130,9 +132,9 @@ void MainWindow::createMaze(){
     resetVariables();
 
     setSizes();
-    createSquares(startingXandY[0] + wallWidth,startingXandY[1] + wallWidth,wallHeight - 2 * wallWidth);
+    createSquares(startingXandY[0] + wallWidth,startingXandY[1] + wallWidth,wallHeight - 2 * wallWidth); // cyan square and its trail(a lot of other squares)
     drawGrid();
-    walls[1]->setVisible(false);
+    walls[1]->setVisible(false); //begining of the maze
 
     timer->start(delay);
 }
@@ -150,7 +152,7 @@ void MainWindow::createWall(int x, int y, int width, int height){
 
 void MainWindow::createSquares(int x, int y, int width){
 
-    //generator square
+    //cyan square
     generatorSquare = scene->addRect(x, y, width, width);
     generatorSquare->setBrush(squareColor);
     generatorSquare->setZValue(trailSquareNumber + 1);
@@ -168,7 +170,7 @@ void MainWindow::createSquares(int x, int y, int width){
     }
 }
 
-void MainWindow::manualReset(){
+void MainWindow::manualReset(){    //when we click on the create button
     resetTimer->stop();
     timer->stop();
     walls.clear();
@@ -219,8 +221,9 @@ void MainWindow::drawGrid(){
 void MainWindow::destroyNextWall(){
 
     indexesThatCantBeDestroyed.clear();
-    //{{wallIndex, boxCoordinate[0],boxCoordinate[1]}, ...}
-    // i create a list of the 4 boxes near the current coordinates, with the index of the wall that we need to destroy to go to this near box
+
+    // i create a list of the 4 boxes near the current coordinates, with the indexes of the 4 walls that we need to destroy to go to the near boxes
+    //closeWallsAndBoxesIndexes = {{wallIndex, boxCoordinate[0],boxCoordinate[1]}, {..., ..., ...}, ..., ...}
     closeWallsAndBoxesIndexes = { {currentBoxCoordinates[0] * 2 + 1 + currentBoxCoordinates[1] * mazeRows * 2, //top box
                                             currentBoxCoordinates[0], currentBoxCoordinates[1] - 1},
 
@@ -231,14 +234,13 @@ void MainWindow::destroyNextWall(){
                                             currentBoxCoordinates[0], currentBoxCoordinates[1] + 1},
 
                                             {currentBoxCoordinates[0] * 2 + 0 + currentBoxCoordinates[1] * mazeRows * 2, // left box
-                                            currentBoxCoordinates[0] - 1, currentBoxCoordinates[1]}
-    };
+                                            currentBoxCoordinates[0] - 1, currentBoxCoordinates[1]} };
+
 
     // remove the boxes that are out of bounds, if they have negative coordinates or beyond the rows of the grid
     // to do that i check if the current x coordinate is null or equal to mazerows - 1, same for y, and add the corresponding index to the list
     // 'indexesThatCantBeDestroyed', for example, if I add 0, to this list, that mean that the top wall cant be destroy bc it is out of bounds.
     // 'listOfCorrespondence' allow me not to make 4 if statement.
-
     QVector<QVector<int>> listOfCorrespondence = {{1,0,0},{0,mazeRows - 1,1},{1,mazeRows - 1,2},{0,0,3}};
     for(int i = 0; i < 4 ; i++){
         if(currentBoxCoordinates[listOfCorrespondence[i][0]] == listOfCorrespondence[i][1]){
@@ -257,7 +259,7 @@ void MainWindow::destroyNextWall(){
     }
 
 
-    //destroy the boxes coord that i cant go to i sort it to remove the right indexes
+    //destroy the boxes coord that i cant go to, i sort it to remove the right indexes
     std::sort(indexesThatCantBeDestroyed.begin(), indexesThatCantBeDestroyed.end());
     for(int i = indexesThatCantBeDestroyed.size() - 1; i >= 0  ; i--){
         closeWallsAndBoxesIndexes.removeAt(indexesThatCantBeDestroyed[i]);
@@ -271,7 +273,7 @@ void MainWindow::destroyNextWall(){
 
         QVector<int> choice = closeWallsAndBoxesIndexes[distrib(gen)];
 
-        //unsee wall
+        //unsee wall instead of destroying it to keep the order
         walls[choice[0]]->setVisible(false);
 
         completePath.append({currentBoxCoordinates[0], currentBoxCoordinates[1], choice[0]});
@@ -293,7 +295,7 @@ void MainWindow::destroyNextWall(){
     if(boxesInThePath.size() == std::pow(mazeRows,2)){
 
         timer->stop();
-        resetTimer->start(std::round(delay / 10));
+        resetTimer->start(std::max((int)std::floor(delay / 10), 1));
         return;
     }
 

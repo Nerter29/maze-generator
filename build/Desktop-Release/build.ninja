@@ -199,7 +199,7 @@ build mazeGenerator_autogen/timestamp mazeGenerator_autogen/mocs_compilation.cpp
 #############################################
 # Custom command for mazeGenerator_autogen\EWIEGA46WW\qrc_resources.cpp
 
-build mazeGenerator_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}mazeGenerator_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/teren/QTProjects/mazeGenerator_wallpaper/resources.qrc CMakeFiles/mazeGenerator_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/icon.png C$:/Qt/6.7.2/mingw_64/./bin/rcc.exe C$:/Qt/6.7.2/mingw_64/./bin/rcc.exe || mazeGenerator_autogen mazeGenerator_autogen_timestamp_deps
+build mazeGenerator_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}mazeGenerator_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/teren/QTProjects/mazeGenerator_wallpaper/resources.qrc CMakeFiles/mazeGenerator_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/Renogare.ttf C$:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/icon.png C$:/Qt/6.7.2/mingw_64/./bin/rcc.exe C$:/Qt/6.7.2/mingw_64/./bin/rcc.exe || mazeGenerator_autogen mazeGenerator_autogen_timestamp_deps
   COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\teren\QTProjects\mazeGenerator_wallpaper\build\Desktop-Release && C:\msys64\mingw64\bin\cmake.exe -E cmake_autorcc C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/mazeGenerator_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json Release"
   DESC = Automatic RCC for resources.qrc
   restat = 1

@@ -187,6 +187,29 @@ QPushButton:hover {
      <string>Nombre de Colones :</string>
     </property>
    </widget>
+   <widget class="QLabel" name="leaveLabel">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>20</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Renogare</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">	color: #eee;
+</string>
+    </property>
+    <property name="text">
+     <string>Quitter [échap]</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

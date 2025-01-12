@@ -32,6 +32,7 @@ public:
     QLineEdit *mazeRowsLineEdit;
     QPushButton *createButton;
     QLabel *mazeRowsLabel;
+    QLabel *leaveLabel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -125,6 +126,12 @@ public:
         mazeRowsLabel->setFont(font);
         mazeRowsLabel->setStyleSheet(QString::fromUtf8("	color: #eee;\n"
 ""));
+        leaveLabel = new QLabel(centralwidget);
+        leaveLabel->setObjectName("leaveLabel");
+        leaveLabel->setGeometry(QRect(610, 20, 191, 31));
+        leaveLabel->setFont(font);
+        leaveLabel->setStyleSheet(QString::fromUtf8("	color: #eee;\n"
+""));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -146,6 +153,7 @@ public:
         delayLabel->setText(QCoreApplication::translate("MainWindow", "D\303\251lai en millisecondes :", nullptr));
         createButton->setText(QCoreApplication::translate("MainWindow", "Cr\303\251er", nullptr));
         mazeRowsLabel->setText(QCoreApplication::translate("MainWindow", "Nombre de Colones :", nullptr));
+        leaveLabel->setText(QCoreApplication::translate("MainWindow", "Quitter [\303\251chap]", nullptr));
     } // retranslateUi
 
 };

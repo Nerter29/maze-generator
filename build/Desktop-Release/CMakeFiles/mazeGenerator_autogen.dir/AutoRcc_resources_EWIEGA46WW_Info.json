@@ -7,7 +7,11 @@
 	"CROSS_CONFIG" : false,
 	"GENERATOR" : "Ninja",
 	"INCLUDE_DIR" : "C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/mazeGenerator_autogen/include",
-	"INPUTS" : [ "C:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/icon.png" ],
+	"INPUTS" : 
+	[
+		"C:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/Renogare.ttf",
+		"C:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/icon.png"
+	],
 	"LOCK_FILE" : "C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/CMakeFiles/mazeGenerator_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "--no-zstd", "-name", "resources" ],
