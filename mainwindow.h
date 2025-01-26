@@ -33,6 +33,8 @@ private:
     QGraphicsRectItem *generatorSquare;
     QVector<QGraphicsRectItem*> trailSquares;
     int trailSquareNumber;
+    int trailSquareMultiplier;
+
     QVector<QVector<int>> generatorSquarePath;
     QVector<QGraphicsRectItem*> solvingPath;
     QVector<QGraphicsRectItem*> walls;
@@ -49,6 +51,10 @@ private:
     int trueWallHeight;
     QColor mazeColor;
     QColor squareColor ;
+    float trailColorDifference;
+    float trailColorDifferenceMultiplier;
+
+
 
     QVector<int> startingXandY;
     int mazeRows;
@@ -61,6 +67,12 @@ private:
     int graphicViewWidth;
     int graphicViewHeight;
     int topHeight;
+
+    int colorPeriod;
+    int colorPeriodMultiplier;
+    int trailIntensity;
+
+    int colorCounter;
 
     bool hasSetUiDimensions;
 
@@ -79,9 +91,11 @@ private:
     void destroyNextWall();
 
     void autoReset();
-    void moveSquares();
+    void moveAndColorizeSquares();
     void resetVariables();
     void manualReset();
+
+    QColor getRainbowColor(int colorValue, int colorTotal,int squareIndex, int totalSquares,int intensity);
 
 
 

@@ -15,12 +15,14 @@ MainWindow::MainWindow(QWidget *parent)
     , resetTimer(new QTimer(this))
     , maxRows(150)
     , minRows(3)
-    , trailSquareNumber(30)
+    , trailSquareMultiplier(2)//2
     , mazeColor(QColor (220, 220, 220))
     , squareColor(QColor (0, 255, 255))
-
-    , mazeRows(20)
-    , delay(50)
+    , trailColorDifferenceMultiplier(0.04)//0.04
+    , colorPeriodMultiplier(30)//30
+    , trailIntensity(120)
+    , mazeRows(40)//40
+    , delay(30)//30
 
     , topHeight(80)
 
@@ -110,7 +112,7 @@ void MainWindow::resetVariables(){
 void MainWindow::setSizes(){
     //everything that need to be changed when we change the dimensions of the maze
     delay = std::max(ui->delayLineEdit->text().toInt(), 1);
-    mazeRows = std::min(ui->mazeRowsLineEdit->text().toInt(),150);
+    mazeRows = std::clamp(ui->mazeRowsLineEdit->text().toInt(),minRows,maxRows);
 
     ui->mazeRowsLineEdit->setText(QString("%1").arg(mazeRows));
     ui->delayLineEdit->setText(QString("%1").arg(delay));
@@ -123,7 +125,12 @@ void MainWindow::setSizes(){
     startingXandY = {(graphicViewWidth - (trueWallHeight * mazeRows)) / 2,
                      ((graphicViewHeight) - (trueWallHeight * mazeRows)) / 2};
 
-    trailSquareNumber = mazeRows * 2;
+
+
+    trailSquareNumber = mazeRows * trailSquareMultiplier;
+    colorPeriod = mazeRows * colorPeriodMultiplier;
+    trailColorDifference = trailColorDifferenceMultiplier * (maxRows - mazeRows);
+
 }
 
 
@@ -132,6 +139,9 @@ void MainWindow::createMaze(){
     resetVariables();
 
     setSizes();
+
+    colorCounter = trailSquareNumber * trailColorDifference;
+
     createSquares(startingXandY[0] + wallWidth,startingXandY[1] + wallWidth,wallHeight - 2 * wallWidth); // cyan square and its trail(a lot of other squares)
     drawGrid();
     walls[1]->setVisible(false); //begining of the maze
@@ -148,13 +158,13 @@ void MainWindow::createWall(int x, int y, int width, int height){
     wall->setZValue(trailSquareNumber + 2);
 
     walls.append(wall);
+
 }
 
 void MainWindow::createSquares(int x, int y, int width){
 
     //cyan square
     generatorSquare = scene->addRect(x, y, width, width);
-    generatorSquare->setBrush(squareColor);
     generatorSquare->setZValue(trailSquareNumber + 1);
 
     //trail squares
@@ -162,12 +172,11 @@ void MainWindow::createSquares(int x, int y, int width){
         QGraphicsRectItem *trailSquare = scene->addRect(x - wallWidth, y - wallWidth, width + 2 * wallWidth, width + 2 * wallWidth);
 
         trailSquare->setPen(Qt::NoPen);
-        int colorByte = 160 - i*150/trailSquareNumber;
-        trailSquare->setBrush(QColor (0, colorByte, colorByte));
-        trailSquare->setZValue(trailSquareNumber-i);
 
+        trailSquare->setZValue(trailSquareNumber-i);
         trailSquares.append(trailSquare);
     }
+
 }
 
 void MainWindow::manualReset(){    //when we click on the create button
@@ -189,7 +198,7 @@ void MainWindow::autoReset(){
     if(completePath[n-resetStep].length() == 3){
         walls[completePath[n-resetStep][2]]->setVisible(true);
     }
-    moveSquares();
+    moveAndColorizeSquares();
     resetStep++;
 
     if(resetStep >n){
@@ -299,21 +308,65 @@ void MainWindow::destroyNextWall(){
         return;
     }
 
-    moveSquares();
+    moveAndColorizeSquares();
 }
 
-void MainWindow::moveSquares(){
+void MainWindow::moveAndColorizeSquares(){
 
     //squares are the generator square and its trail squares
+
+    //generator
     generatorSquare->setPos(currentBoxCoordinates[0] * trueWallHeight ,currentBoxCoordinates[1] * trueWallHeight );
     generatorSquarePath.append(currentBoxCoordinates);
+    generatorSquare->setBrush(getRainbowColor(colorCounter, colorPeriod,0,trailSquareNumber, 255));
+
+    //trail
     int n = generatorSquarePath.length();
 
+    //move each square of the trail
     for(int i = 0; i < trailSquareNumber;i++){
         trailSquares[i]->setPos(generatorSquarePath[std::max(n-i-2, 0)][0] * (trueWallHeight),
                                 generatorSquarePath[std::max(n-i-2, 0)][1] * (trueWallHeight));
     }
+
+    //colorise the trail
+
+    //to adjust the colors based on the index of each square in the trail
+    int colorIndexAdjustment = trailSquareNumber * trailColorDifference;
+
+    //so colours can progress
+    if(colorCounter >= colorPeriod ){
+        colorCounter = colorIndexAdjustment;
+    }
+    else{
+        colorCounter++;
+    }
+
+    for(int i = 0; i < trailSquares.size(); i++){
+
+        int intensity = trailIntensity + 10 - i * trailIntensity / trailSquareNumber;
+        trailSquares[i]->setBrush(getRainbowColor(colorCounter, colorPeriod,i, trailSquareNumber, intensity));
+    }
 }
+
+QColor MainWindow::getRainbowColor(int colorValue, int colorTotal,int squareIndex, int totalSquares,int intensity){
+
+    //value is a proportion of total. It's the proportion of the colour spectrum, if the proportion is 0.5, the colour will be at the
+    //middle of the spectrum, that mean green. The variable hue and the function QColor::fromHsv transform the proportion
+    //in the corresponding color.
+    //to find my curren value and my total, i use the colorCounter(colorValue) and i make a difference of colours in the trail by taking
+    //into account the index of the trail
+
+    int value = (colorValue - squareIndex * trailColorDifference);
+    int total = (colorTotal - totalSquares * trailColorDifference) - 1;
+
+    int hue = static_cast<int>((360.0 / (total)) * value) % 360;
+    return QColor::fromHsv(hue,255, intensity);
+}
+
+
+
+
 
 
 
