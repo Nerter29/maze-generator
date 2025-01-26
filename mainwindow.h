@@ -67,10 +67,13 @@ private:
     int graphicViewWidth;
     int graphicViewHeight;
     int topHeight;
+    int sideSpace;
 
     int colorPeriod;
     int colorPeriodMultiplier;
     int trailIntensity;
+    int trailBrillance;
+
 
     int colorCounter;
 

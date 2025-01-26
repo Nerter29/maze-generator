@@ -18,15 +18,17 @@ MainWindow::MainWindow(QWidget *parent)
     , trailSquareMultiplier(2)//2
     , mazeColor(QColor (220, 220, 220))
     , squareColor(QColor (0, 255, 255))
-    , trailColorDifferenceMultiplier(0.04)//0.04
+    , trailColorDifferenceMultiplier(0.03)//0.03
     , colorPeriodMultiplier(30)//30
-    , trailIntensity(120)
-    , mazeRows(40)//40
-    , delay(30)//30
+    , trailIntensity(120) // 120
+    , trailBrillance(170) //170
+    , mazeRows(40)//40 // 35
+    , delay(30)//30 //30
 
-    , topHeight(80)
+    , topHeight(80)//80 //30
+    , sideSpace(0)//0 //230
 
-    ,hasSetUiDimensions(false)
+    , hasSetUiDimensions(false)
 {
     ui->setupUi(this);
     ui->mazeGraphicView->setScene(scene);
@@ -34,8 +36,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(resetTimer, &QTimer::timeout, this, &MainWindow::autoReset);
     connect(timer, &QTimer::timeout, this, &MainWindow::destroyNextWall);
     connect(ui->createButton, &QPushButton::clicked, this, &MainWindow::manualReset);
-
-
 
 }
 
@@ -98,6 +98,19 @@ void MainWindow::setUIDimensions(){
 
     ui->mazeRowsLineEdit->setText(QString("%1").arg(mazeRows));
     ui->delayLineEdit->setText(QString("%1").arg(delay));
+
+
+    //remove all UI
+/*
+    createButton->setVisible(false);
+    mazeRowsLabel->setVisible(false);
+    mazeRowsLineEdit->setVisible(false);
+    delayLabel->setVisible(false);
+    delayLineEdit->setVisible(false);
+    leaveLabel->setVisible(false);
+    ui->centralwidget->setStyleSheet("background-color: #000000;");
+*/
+
 }
 
 void MainWindow::resetVariables(){
@@ -111,19 +124,20 @@ void MainWindow::resetVariables(){
 
 void MainWindow::setSizes(){
     //everything that need to be changed when we change the dimensions of the maze
+
     delay = std::max(ui->delayLineEdit->text().toInt(), 1);
     mazeRows = std::clamp(ui->mazeRowsLineEdit->text().toInt(),minRows,maxRows);
 
     ui->mazeRowsLineEdit->setText(QString("%1").arg(mazeRows));
     ui->delayLineEdit->setText(QString("%1").arg(delay));
 
-    wallHeight = std::round((graphicViewHeight) / mazeRows);
+    wallHeight = std::round((graphicViewHeight- sideSpace) / mazeRows);
     wallWidth = 1;
 
     trueWallHeight = (wallHeight - wallWidth);
 
-    startingXandY = {(graphicViewWidth - (trueWallHeight * mazeRows)) / 2,
-                     ((graphicViewHeight) - (trueWallHeight * mazeRows)) / 2};
+    startingXandY = {(graphicViewWidth - sideSpace - (trueWallHeight * mazeRows)) / 2,
+                     ((graphicViewHeight - sideSpace) - (trueWallHeight * mazeRows)) / 2};
 
 
 
@@ -361,7 +375,7 @@ QColor MainWindow::getRainbowColor(int colorValue, int colorTotal,int squareInde
     int total = (colorTotal - totalSquares * trailColorDifference) - 1;
 
     int hue = static_cast<int>((360.0 / (total)) * value) % 360;
-    return QColor::fromHsv(hue,255, intensity);
+    return QColor::fromHsv(hue,trailBrillance, intensity);
 }
 
 
