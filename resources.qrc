@@ -2,6 +2,8 @@
     <qresource>
         <file>assets/icon.png</file>
     	<file>assets/Renogare.ttf</file>
+        <file>assets/nerterLogo.png</file>
+
 
     </qresource>
 </RCC>

@@ -33,6 +33,7 @@ public:
     QPushButton *createButton;
     QLabel *mazeRowsLabel;
     QLabel *leaveLabel;
+    QPushButton *nerterButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -132,6 +133,9 @@ public:
         leaveLabel->setFont(font);
         leaveLabel->setStyleSheet(QString::fromUtf8("	color: #eee;\n"
 ""));
+        nerterButton = new QPushButton(centralwidget);
+        nerterButton->setObjectName("nerterButton");
+        nerterButton->setGeometry(QRect(530, 530, 83, 29));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -154,6 +158,7 @@ public:
         createButton->setText(QCoreApplication::translate("MainWindow", "Cr\303\251er", nullptr));
         mazeRowsLabel->setText(QCoreApplication::translate("MainWindow", "Nombre de Colones :", nullptr));
         leaveLabel->setText(QCoreApplication::translate("MainWindow", "Quitter [\303\251chap]", nullptr));
+        nerterButton->setText(QString());
     } // retranslateUi
 
 };

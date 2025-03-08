@@ -6,6 +6,8 @@
 #include <iostream>
 #include <random>
 #include <algorithm>
+#include <QDesktopServices>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, &QTimer::timeout, this, &MainWindow::destroyNextWall);
     connect(ui->createButton, &QPushButton::clicked, this, &MainWindow::manualReset);
 
+    connect(ui->nerterButton, &QPushButton::clicked, this, &MainWindow::openLink);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -55,6 +60,12 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         QMainWindow::keyPressEvent(event);
     }
 }
+void MainWindow::openLink()
+{
+    QUrl url("https://nerter.fr");
+    QDesktopServices::openUrl(url);
+}
+
 
 //this function is automatically called right after the screen has been set in fullscreen so it's the begining of the script
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -83,16 +94,25 @@ void MainWindow::setUIDimensions(){
 
     QLabel *leaveLabel = findChild<QLabel*>("leaveLabel");
 
+    QPushButton *nerterButton = findChild<QPushButton*>("nerterButton");
+
+
+
+    QIcon nerterLogo(":/assets/nerterLogo.png");
+    ui->nerterButton->setIcon(nerterLogo);
+    ui->nerterButton->setIconSize(QSize(30, 30));
+    nerterButton->move(-2, 0);
+    nerterButton->resize(30, 30);
 
     mazeGraphicView->setFixedSize(graphicViewWidth, graphicViewHeight);
     mazeGraphicView->move(0, topHeight - 30);
 
-    createButton->move(10, 5);
+    createButton->move(30, 5);
 
-    mazeRowsLabel->move(120, 2);
-    mazeRowsLineEdit->move(305, 1);
-    delayLabel->move(120, 26);
-    delayLineEdit->move(328, 25);
+    mazeRowsLabel->move(140, 2);
+    mazeRowsLineEdit->move(325, 1);
+    delayLabel->move(140, 26);
+    delayLineEdit->move(348, 25);
 
     leaveLabel->move(windowSize.width() - 135, 0);
 

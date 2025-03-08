@@ -81,6 +81,7 @@ private:
 
 
     void setSizes();
+    void openLink();
     void setUIDimensions();
     void resizeEvent(QResizeEvent *event);
 

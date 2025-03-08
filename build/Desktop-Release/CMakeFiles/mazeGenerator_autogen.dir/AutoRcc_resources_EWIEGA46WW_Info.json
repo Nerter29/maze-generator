@@ -9,6 +9,7 @@
 	"INCLUDE_DIR" : "C:/Users/teren/QTProjects/mazeGenerator_wallpaper/build/Desktop-Release/mazeGenerator_autogen/include",
 	"INPUTS" : 
 	[
+		"C:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/nerterLogo.png",
 		"C:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/Renogare.ttf",
 		"C:/Users/teren/QTProjects/mazeGenerator_wallpaper/assets/icon.png"
 	],

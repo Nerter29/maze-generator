@@ -210,6 +210,19 @@ QPushButton:hover {
      <string>Quitter [échap]</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="nerterButton">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>530</y>
+      <width>83</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
