@@ -1,6 +1,6 @@
 DESCRIPTION:
 
-Constructeur de Labyrinthe ou un petit carré multicolore (avec une belle trainée) transforme un quadrillage ennuyeux à un magnifique labyrinthe, et qui recommence encore et encore.  
+Constructeur de Labyrinthe où un petit carré multicolore (avec une belle trainée) transforme un quadrillage ennuyeux, en un magnifique labyrinthe, et qui recommence encore et encore.  
 Vous pouvez changer la taille du labyrinthe et le delai entre chaque mouvement du carré.  
 
 INSTALLATION:  
