@@ -120,7 +120,7 @@ void MainWindow::setUIDimensions(){
     ui->delayLineEdit->setText(QString("%1").arg(delay));
 
 
-    //remove all UI
+    //remove all UI for wallpaper purpose
 /*
     createButton->setVisible(false);
     mazeRowsLabel->setVisible(false);
