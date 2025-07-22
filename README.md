@@ -1,10 +1,11 @@
-DESCRIPTION:
+# Description:
 
-Constructeur de Labyrinthe où un petit carré multicolore (avec une belle trainée) transforme un quadrillage ennuyeux, en un magnifique labyrinthe, et qui recommence encore et encore.  
-Vous pouvez changer la taille du labyrinthe et le delai entre chaque mouvement du carré.  
+Generator of maze where a small multi colored square (with a nice trail) transforms a boring grid into a beautiful maze, and it repeats again and again.
+You can change the size of the maze and the delay between each move of the square.
 
-INSTALLATION:  
--téléchargez le .zip  
--extrayez le  
--double cliquez sur le fichier .exe (il a une icone normalement)  
-Pour les utilisateurs Linux, le logiciel Wine arrive très bien à faire tourner le .exe, il faudra juste l'installer (sudo pacman -S wine pour archlinux)
+# Installation:  
+-Download the .zip file  
+-Extract it  
+-Double-click the .exe file (it normally has an icon)  
+
+For Linux users, the Wine software can run the .exe file very well; you just need to install it 
