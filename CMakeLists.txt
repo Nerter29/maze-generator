@@ -59,7 +59,6 @@ if(${QT_VERSION} VERSION_LESS 6.1.0)
 endif()
 
 
-
 set_target_properties(mazeGenerator PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

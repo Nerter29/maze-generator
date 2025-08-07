@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-db0d968c9a9820aae70c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "mazeGenerator",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "mazeGenerator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mazeGenerator-Debug-7fa03e74536bc730e98a.json",
+					"name" : "mazeGenerator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mazeGenerator_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mazeGenerator_autogen-Debug-cf15e8abaa8a5eef4a30.json",
+					"name" : "mazeGenerator_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mazeGenerator_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mazeGenerator_autogen_timestamp_deps-Debug-326b0d62a822a2496fad.json",
+					"name" : "mazeGenerator_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/build/Desktop_Qt_6_9_1-Debug",
+		"source" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

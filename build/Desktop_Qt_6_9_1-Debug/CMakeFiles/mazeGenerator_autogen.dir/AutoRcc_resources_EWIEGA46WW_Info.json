@@ -1,0 +1,27 @@
+{
+	"BUILD_DIR" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/build/Desktop_Qt_6_9_1-Debug/mazeGenerator_autogen",
+	"CMAKE_BINARY_DIR" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/build/Desktop_Qt_6_9_1-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/build/Desktop_Qt_6_9_1-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper",
+	"CMAKE_SOURCE_DIR" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/build/Desktop_Qt_6_9_1-Debug/mazeGenerator_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/assets/nerterLogo.png",
+		"/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/assets/Renogare.ttf",
+		"/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/assets/icon.png"
+	],
+	"LOCK_FILE" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/mazeGenerator_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/home/terence/Qt/6.9.1/gcc_64/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/mazeGenerator_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/terence/0-documents/0-perso/1-projets-non-executables/QTProjects/mazeGenerator_wallpaper/resources.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}
